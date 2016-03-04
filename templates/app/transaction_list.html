@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>Your transaction list</h5>
+    <table>
+        <thead>
+          <tr>
+              <th>Type</th>
+              <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for account in object_list %}
+          <tr>
+            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.get_trans_type_display }}</a></td>
+            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.amount }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

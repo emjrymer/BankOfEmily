@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>Your accounts list</h5>
+    <table>
+        <thead>
+          <tr>
+              <th>Account Number</th>
+              <th>Nickname</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for account in object_list %}
+          <tr>
+            <td><a href="{% url 'account_detail_view' account.id %}">{{ account.id }}</a></td>
+            <td><a href="{% url 'account_detail_view' account.id %}">{{ account.nickname }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

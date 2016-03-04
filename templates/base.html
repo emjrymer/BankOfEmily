@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IronBank</title>
+</head>
+<body>
+    <nav>
+        <div>
+          <ul>
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'account_list_view' %}" >account list</a></li>
+              <li><a href="{% url 'create_account_view' %}" >create account</a></li>
+              <li><a href="{% url 'logout_view' %}" >{{ request.user }}, logout</a></li>
+            {% else %}
+              <li><a href="{% url 'signup_view' %}">signup</a></li>
+              <li><a href="{% url 'login_view' %}">login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+    {% if request.user.is_authenticated %}
+    <div><h1>Welcome {{ request.user }}</h1></div>
+    {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</body>
+</html>
