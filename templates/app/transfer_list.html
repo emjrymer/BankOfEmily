@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>Your Transfer list</h5>
+    <table>
+        <thead>
+          <tr>
+              <th>Account</th>
+              <th>Amount</th>
+              <th>User</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for account in object_list %}
+          <tr>
+            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.account.nickname }}</a></td>
+            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.amount }}</a></td>
+            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.account.user }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

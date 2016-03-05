@@ -12,7 +12,7 @@ class AccountNumber(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{}".format(self.user)
+        return "{} {}".format(self.user, self.nickname)
 
 
 class Transaction(models.Model):

@@ -22,5 +22,7 @@
         </tbody>
       </table>
     <a href="{% url 'trans_create_view' object.id %}">Create Transaction</a>
-
+    <a href="{% url 'trans_list_view' object.id %}">Transaction List</a>
+    <a href="{% url 'transfer_create_view' object.id %}">Create Transfer</a>
+    <a href="{% url 'transfer_list_view' %}">Transfer List</a>
 {% endblock %}

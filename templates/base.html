@@ -1,13 +1,17 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
     <title>IronBank</title>
 </head>
 <body>
     <nav>
-        <div>
-          <ul>
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
             {% if request.user.is_authenticated %}
               <li><a href="{% url 'account_list_view' %}" >account list</a></li>
               <li><a href="{% url 'create_account_view' %}" >create account</a></li>
@@ -17,6 +21,16 @@
               <li><a href="{% url 'login_view' %}">login</a></li>
             {% endif %}
           </ul>
+            <ul class="side-nav" id="mobile-demo">
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'account_list_view' %}" >account list</a></li>
+              <li><a href="{% url 'create_account_view' %}" >create account</a></li>
+              <li><a href="{% url 'logout_view' %}" >{{ request.user }}, logout</a></li>
+            {% else %}
+              <li><a href="{% url 'signup_view' %}">signup</a></li>
+              <li><a href="{% url 'login_view' %}">login</a></li>
+            {% endif %}
+
         </div>
     </nav>
 
@@ -29,5 +43,9 @@
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script type="">
+    $( document ).ready(function(){
+    $(".button-collapse").sideNav(); });
+</script>
 </body>
 </html>
