@@ -22,6 +22,10 @@ class SignUpView(CreateView):
         return reverse("login_view")
 
 
+def homepage(request):
+    return HttpResponseRedirect(reverse('login_view'))
+
+
 class AccountNumberList(LimitedAccessMixin, ListView):
     model = AccountNumber
 
@@ -115,3 +119,6 @@ class TransferListView(ListView):
     def get_queryset(self):
         return Transfer.objects.filter(account__user=self.request.user)
 
+
+class TransferDetailView(DetailView):
+    model = Transfer

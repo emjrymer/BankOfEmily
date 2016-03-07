@@ -2,11 +2,13 @@
 
 {% block content %}
     <h5>Your accounts list</h5>
+    <h6>Click on account for details</h6>
     <table>
         <thead>
           <tr>
               <th>Account Number</th>
-              <th>Nickname</th>
+              <th>Account Nickname</th>
+              <th>Account Opened</th>
           </tr>
         </thead>
         <tbody>
@@ -14,6 +16,8 @@
           <tr>
             <td><a href="{% url 'account_detail_view' account.id %}">{{ account.id }}</a></td>
             <td><a href="{% url 'account_detail_view' account.id %}">{{ account.nickname }}</a></td>
+            <td><a href="{% url 'account_detail_view' account.id %}">{{ account.time_created }}</a></td>
+
           </tr>
         {% endfor %}
         </tbody>

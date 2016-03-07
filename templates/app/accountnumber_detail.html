@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h5>{{ object.id }} - Account Details</h5>
+    <h5>Account: {{ object.id }} - Details</h5>
+    <br>
     <table>
         <thead>
           <tr>
               <th>Account Number</th>
               <th>Balance</th>
-              <th>User</th>
-              <th>Created</th>
+              <th>Account Owner</th>
+              <th>Date Opened</th>
           </tr>
         </thead>
         <tbody>
@@ -21,8 +22,10 @@
 
         </tbody>
       </table>
-    <a href="{% url 'trans_create_view' object.id %}">Create Transaction</a>
-    <a href="{% url 'trans_list_view' object.id %}">Transaction List</a>
-    <a href="{% url 'transfer_create_view' object.id %}">Create Transfer</a>
-    <a href="{% url 'transfer_list_view' %}">Transfer List</a>
+    <div class="'spacing">
+    <a href="{% url 'trans_create_view' object.id %}" class="waves-effect waves-light btn">New Transaction</a>
+    <a href="{% url 'trans_list_view' object.id %}" class="waves-effect waves-light btn">Transactions</a>
+    <br><a href="{% url 'transfer_create_view' object.id %}" class="waves-effect waves-light btn">New Transfer</a>
+    <a href="{% url 'transfer_list_view' %}" class="waves-effect waves-light btn">Transfers</a>
+    </div>
 {% endblock %}

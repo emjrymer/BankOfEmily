@@ -2,18 +2,19 @@
 
 {% block content %}
     <h5>Your transaction list</h5>
+    <h6>Click on transaction for details</h6>
     <table>
         <thead>
           <tr>
-              <th>Type</th>
-              <th>Amount</th>
+              <th>Type of Transaction</th>
+              <th>Amount of Transation</th>
           </tr>
         </thead>
         <tbody>
         {% for account in object_list %}
           <tr>
             <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.get_trans_type_display }}</a></td>
-            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.amount }}</a></td>
+            <td><a href="{% url 'trans_detail_view' account.id %}">$ {{ account.amount }}</a></td>
           </tr>
         {% endfor %}
         </tbody>

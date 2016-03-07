@@ -13,9 +13,9 @@
         <tbody>
         {% for account in object_list %}
           <tr>
-            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.account.nickname }}</a></td>
-            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.amount }}</a></td>
-            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.account.user }}</a></td>
+            <td><a href="{% url 'transfer_detail_view' account.id %}">{{ account.account.nickname }}</a></td>
+            <td><a href="{% url 'transfer_detail_view' account.id %}">{{ account.amount }}</a></td>
+            <td><a href="{% url 'transfer_detail_view' account.id %}">{{ account.account.user }}</a></td>
           </tr>
         {% endfor %}
         </tbody>

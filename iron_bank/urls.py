@@ -3,10 +3,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from app.views import SignUpView, AccountNumberList, AccountCreateView, AccountDetailView, TransCreateView, TransListView, TransferCreateView, TransDetailView, OverDraftView, \
-    TransferListView
+    TransferListView, homepage, TransferDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', homepage),
     url(r'^signup/$', SignUpView.as_view(), name="signup_view"),
     url(r'^login/$', auth_views.login, name="login_view"),
     url(r'^logout/$', auth_views.logout_then_login, name="logout_view"),
@@ -18,5 +19,6 @@ urlpatterns = [
     url(r'^transdetail/(?P<pk>\d+)/$', TransDetailView.as_view(), name="trans_detail_view"),
     url(r'^transfer/(?P<pk>\d+)/$', TransferCreateView.as_view(), name="transfer_create_view"),
     url(r'^overdraft/', OverDraftView.as_view(), name="over_view"),
-    url(r'^transferlist/$', TransferListView.as_view(), name="transfer_list_view")
+    url(r'^transferlist/$', TransferListView.as_view(), name="transfer_list_view"),
+    url(r'^transferdetails/(?P<pk>\d+)', TransferDetailView.as_view(), name="transfer_detail_view")
 ]

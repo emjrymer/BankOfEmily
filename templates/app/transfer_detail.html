@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>Transaction: {{ object.id }} - Details</h5>
+    <br>
+    <table>
+        <thead>
+          <tr>
+              <th>Transaction Number</th>
+              <th>Amount</th>
+              <th>Transfered To:</th>
+              <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>{{ object.id }}</td>
+            <td>$ {{ object.amount }}</td>
+              <td>{{ object.account }}</td>
+              <td>{{ object.time_created }}</td>
+            </tr>
+        </tbody>
+      </table>
+{% endblock %}

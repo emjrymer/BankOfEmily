@@ -12,13 +12,13 @@
           </tr>
         </thead>
         <tbody>
-
           <tr>
             <td>{{ object.id }}</td>
             <td>$ {{ object.amount }}</td>
             <td>{{ object.get_trans_type_display }}</td>
             <td>{{ object.time_created }}</td>
-
+        </tr>
         </tbody>
       </table>
+    <a href="{% url 'trans_create_view' object.id %}" class="waves-effect waves-light btn">New Transaction</a>
 {% endblock %}
