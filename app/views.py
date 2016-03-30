@@ -47,7 +47,7 @@ class AccountDetailView(LimitedAccessMixin, DetailView):
     model = AccountNumber
 
 
-class TransCreateView(CreateView):
+class TransactionCreateView(CreateView):
     model = Transaction
     fields = ('trans_type', 'amount', 'description')
 
@@ -57,15 +57,14 @@ class TransCreateView(CreateView):
         form_object.account = acct_num
         if form_object.account.balance > 0:
             if form_object.trans_type == 'd':
-                new_balance = acct_num.balance + form_object.amount
-                AccountNumber.objects.filter(user=self.request.user).update(balance=new_balance)
+                form_object.account.balance + form_object.amount
+                form_object.account.save()
             elif form_object.trans_type == 'w':
                 if form_object.amount > acct_num.balance:
                     return HttpResponseRedirect('/overdraft')
                 else:
-                    new_balance = acct_num.balance - form_object.amount
-                    AccountNumber.objects.filter(user=self.request.user).update(balance=new_balance)
-            form_object.save()
+                    form_object.account.balance + form_object.amount
+                    form_object.account.save()
             return super().form_valid(form)
         else:
             return HttpResponseRedirect('/overdraft')
@@ -74,16 +73,15 @@ class TransCreateView(CreateView):
         return reverse("account_list_view")
 
 
-class TransListView(ListView):
+class TransactionListView(ListView):
     model = Transaction
 
     def get_queryset(self):
-        transactions_by_user = Transfer.objects.filter(account__user=self.request.user)
-        proper_user_transactions = transactions_by_user.filter(time_created=datetime.now()-timedelta(days=how_many_days))
-        return proper_user_transactions
+        transactions_by_user = Transaction.objects.filter(account=self.kwargs['pk'])
+        return transactions_by_user
 
 
-class TransDetailView(DetailView):
+class TransactionDetailView(DetailView):
     model = Transaction
 
 

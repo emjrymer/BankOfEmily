@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h5>{{ object.id }} - Transaction Details</h5>
+    <h5>Account: {{ object.account }} / Transaction Number {{ object.id }} -  Details</h5>
     <table>
         <thead>
           <tr>
-              <th>Account Number</th>
+              <th>Transaction Number</th>
               <th>Amount</th>
               <th>Type</th>
               <th>Created</th>
@@ -20,5 +20,5 @@
         </tr>
         </tbody>
       </table>
-    <a href="{% url 'trans_create_view' object.id %}" class="waves-effect waves-light btn">New Transaction</a>
+    <a href="{% url 'trans_create_view' object.account.id %}" class="waves-effect waves-light btn">New Transaction</a>
 {% endblock %}

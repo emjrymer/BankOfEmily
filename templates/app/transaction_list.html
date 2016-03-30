@@ -11,10 +11,10 @@
           </tr>
         </thead>
         <tbody>
-        {% for account in object_list %}
+        {% for transaction in object_list %}
           <tr>
-            <td><a href="{% url 'trans_detail_view' account.id %}">{{ account.get_trans_type_display }}</a></td>
-            <td><a href="{% url 'trans_detail_view' account.id %}">$ {{ account.amount }}</a></td>
+            <td><a href="{% url 'trans_detail_view' transaction.id %}">{{ transaction.get_trans_type_display }}</a></td>
+            <td><a href="{% url 'trans_detail_view' transaction.id %}">$ {{ transaction.amount }}</a></td>
           </tr>
         {% endfor %}
         </tbody>
