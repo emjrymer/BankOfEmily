@@ -5,3 +5,9 @@ select {
 #span {
     letter-spacing: 6px;
 }
+
+.container {
+    font-family: Handlee;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}

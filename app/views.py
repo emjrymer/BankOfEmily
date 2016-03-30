@@ -55,7 +55,7 @@ class TransCreateView(CreateView):
         form_object = form.save(commit=False)
         acct_num = AccountNumber.objects.get(pk=self.kwargs['pk'])
         form_object.account = acct_num
-        if form_object.account > 0:
+        if form_object.account.balance > 0:
             if form_object.trans_type == 'd':
                 new_balance = acct_num.balance + form_object.amount
                 AccountNumber.objects.filter(user=self.request.user).update(balance=new_balance)
@@ -71,12 +71,16 @@ class TransCreateView(CreateView):
             return HttpResponseRedirect('/overdraft')
 
     def get_success_url(self):
-        return reverse("trans_list_view")
+        return reverse("account_list_view")
 
 
 class TransListView(ListView):
     model = Transaction
-    model.objects.filter(time_created=datetime.now()-timedelta(days=how_many_days))
+
+    def get_queryset(self):
+        transactions_by_user = Transfer.objects.filter(account__user=self.request.user)
+        proper_user_transactions = transactions_by_user.filter(time_created=datetime.now()-timedelta(days=how_many_days))
+        return proper_user_transactions
 
 
 class TransDetailView(DetailView):
@@ -115,9 +119,6 @@ class OverDraftView(TemplateView):
 
 class TransferListView(ListView):
     model = Transfer
-
-    def get_queryset(self):
-        return Transfer.objects.filter(account__user=self.request.user)
 
 
 class TransferDetailView(DetailView):
